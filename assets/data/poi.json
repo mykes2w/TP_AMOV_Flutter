@@ -1,0 +1,57 @@
+[
+  {
+    "id":1,
+    "name": "Miniatur Wunderland",
+    "category": "Museus",
+    "short_description": "O maior modelismo ferroviário do mundo.",
+    "description" : "Uma das atrações mais visitadas da Alemanha. É um mundo em miniaturas com comboios, aeroportos e réplicas de cidades inteiras em funcionamento",
+    "image": "assets/images/miniatur.png",
+    "schedule": "09:30 - 18:00",
+    "average_price": 20.0,
+    "location": "Kehrwieder 2, Hamburg"
+  },
+  {
+    "id":2,
+    "name": "Elbphilharmonie",
+    "category": "Monumentos",
+    "short_description": "Sala de concertos icónica no porto de Hamburgo.",
+    "description" : "Conhecida como 'Elphi', é uma sala de concertos moderna construída sobre um armazém antigo. O terraço faz com que as pessoas tenham uma vista panorâmica de 360 graus sobre a cidade e o porto",
+    "image": "assets/images/filarmonica.png",
+    "schedule": "10:00 - 23:45",
+    "average_price": 0.0,
+    "location": "Platz der Deutschen Einheit 4, Hamburg"
+  },
+  {
+    "id":3,
+    "name": "Volksparkstadion",
+    "category": "Monumentos",
+    "short_description": "O estádio do Hamburger SV",
+    "description" : "Um dos maiores e mais importantes estádios da Alemanha. Oferece visitas guiadas ao museu do clube e aos balneários deste histórico clube.",
+    "image": "assets/images/hsv.png",
+    "schedule": "10:00 - 16:00",
+    "average_price": 12.0,
+    "location": "Sylvesterallee 7, Hamburg"
+  },
+  {
+    "id":4,
+    "name": "Speicherstadt",
+    "category": "Monumentos",
+    "short_description": "O maior complexo de armazéns do mundo.",
+    "description" : "Um bairro histórico construído sobre estacas de madeira, famoso pelos seus edifícios de tijolo vermelho e canais. É Património Mundial da UNESCO",
+    "image": "assets/images/speicherstadt.png",
+    "schedule": "Aberto 24h",
+    "average_price": 0.0,
+    "location": "Speicherstadt, Hamburg"
+  },
+  {
+    "id":5,
+    "name": "Bunker St. Pauli",
+    "category": "Monumentos",
+    "short_description": "Bunker de guerra transformado num jardim.",
+    "description" : "Um bunker antiaéreo da Segunda Guerra Mundial que foi recentemente renovado e coberto de vegetação. O terraço público no topo oferece uma vista única sobre a cidade",
+    "image": "assets/images/bunker.png",
+    "schedule": "09:00 - 21:00",
+    "average_price": 0.0,
+    "location": "Feldstraße 66, Hamburg"
+  }
+]
