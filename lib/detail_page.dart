@@ -3,9 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'poi.dart';
 
 class DetailPage extends StatefulWidget {
-  final Poi poi;
+  final Poi poi; //recebe o monumento que foi clicado e passado para este ecra
 
-  const DetailPage({super.key, required this.poi});
+  const DetailPage({super.key, required this.poi}); //recebe o objeto POI e obrigatoriamente tem de dar
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -17,35 +17,35 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
-    _checkFavoriteStatus();
+    _checkFavoriteStatus(); // ao abrir a pagina verifica se esta favorito
   }
 
   Future<void> _checkFavoriteStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    final List<String> favorites = prefs.getStringList('favorites') ?? [];
+    final prefs = await SharedPreferences.getInstance(); //abre o ficheiro shared preferences
+    final List<String> favorites = prefs.getStringList('favorites') ?? []; //vai buscar a lista de favoritos ao ficheiro e caso nao tenha nada devolve uma lista vazia
 
     setState(() {
-      isFavorite = favorites.contains(widget.poi.id.toString());
+      isFavorite = favorites.contains(widget.poi.id.toString()); //verifica se o id do monumento consta na lista
     });
   }
 
-  Future<void> _toggleFavorite() async {
-    final prefs = await SharedPreferences.getInstance();
+  Future<void> _toggleFavorite() async { //quando clica no botao
+    final prefs = await SharedPreferences.getInstance(); //cria o ficheiro shared preferences para guardar os favoritos
     final List<String> favorites = prefs.getStringList('favorites') ?? [];
     String id = widget.poi.id.toString();
 
-    if (isFavorite) {
+    if (isFavorite) {  //se o objeto for favorito remove 
       favorites.remove(id);
-    } else {
+    } else { //se nao adiciona
       favorites.add(id);
     }
-
+    // Grava a lista atualizada fisicamente no armazenamento do telemóvel
     await prefs.setStringList('favorites', favorites);
 
     setState(() {
-      isFavorite = !isFavorite;
+      isFavorite = !isFavorite; // Inverte o valor visual (true -> false e vice-versa)
     });
-
+    //mostrar a barra no fundo do ecra com o aviso
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(isFavorite ? 'Adicionado aos Favoritos' : 'Removido dos Favoritos'),
@@ -71,6 +71,7 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ],
       ),
+      // SingleChildScrollView: evita que a app crash se o texto for maior que o ecrã
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
