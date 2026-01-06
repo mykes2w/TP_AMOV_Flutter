@@ -3,21 +3,21 @@ import '../poi.dart';
 import '../detail_page.dart';
 
 class CategoryPointsPage extends StatelessWidget {
-  final String category;
+  final String category; //nome da categoria
   final List<Poi> allPois;
 
   const CategoryPointsPage({super.key, required this.category, required this.allPois});
 
   @override
   Widget build(BuildContext context) {
-    final categoryPois = allPois.where((p) => p.category == category).toList();
+    final categoryPois = allPois.where((p) => p.category == category).toList(); //aqui filtramos para que mostre apenas os monumentos que recebe por parametro
 
     return Scaffold(
       appBar: AppBar(
         title: Text(category),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: ListView.builder(
+      body: ListView.builder( //listview builder é mais eficiente em termos de memória (performance). Ele só cria e desenha os cartões que estão visíveis no ecrã. Se tivéssemos 100 monumentos na mesma categoria, o Flutter não gastaria recursos a desenhá-los todos de uma vez, apenas à medida que o utilizador fizesse scroll
         itemCount: categoryPois.length,
         itemBuilder: (context, index) {
           final poi = categoryPois[index];
