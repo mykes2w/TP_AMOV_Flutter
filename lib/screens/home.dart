@@ -19,22 +19,22 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    _startClock();
+    _startClock();//inicia o relogio mal abre a aplicaçao
     _fetchWeather();
   }
 
   @override
-  void dispose() {
-    _timer?.cancel();
+  void dispose() { //dispose para esta funçao continuar a correr mesmo que estejas noutra pagina
+    _timer?.cancel(); //para o relogio quando paramos a aplicaçao
     super.dispose();
   }
 
   void _startClock() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      final DateTime now = DateTime.now().toUtc().add(const Duration(hours: 1));
-      if (mounted) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) { //cria um temporizador que conta a um segundo
+      final DateTime now = DateTime.now().toUtc().add(const Duration(hours: 1)); //vai buscar a hora de agora e adiciona um por ser +1 em hamburgo
+      if (mounted) { //verifica se o ecra esta visivel ante sde atualizar a hora
         setState(() {
-          _timeString = "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
+          _timeString = "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}"; //formata a hora
         });
       }
     });
@@ -43,19 +43,19 @@ class _HomeViewState extends State<HomeView> {
   Future<void> _fetchWeather() async {
     try {
       final url = Uri.parse('https://api.open-meteo.com/v1/forecast?latitude=53.55&longitude=9.99&current_weather=true');
-      final response = await http.get(url);
+      final response = await http.get(url); //espera pela resposta do site
       if (response.statusCode == 200 && mounted) {
-        final data = json.decode(response.body);
+        final data = json.decode(response.body); //transforma o texto da API num mapa
         setState(() {
-          _weatherInfo = "${data['current_weather']['temperature'].round()}°C";
+          _weatherInfo = "${data['current_weather']['temperature'].round()}°C"; //coloca a temperatura no ecra
         });
-      }
+      } /
     } catch (e) { print(e); }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return SafeArea( //garante que fica fora da area da camera
       child: Column(
         children: [
           const SizedBox(height: 75),
