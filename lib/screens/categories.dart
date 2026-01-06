@@ -8,7 +8,9 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = allPois.map((e) => e.category).toSet().toList();
+    final categories = allPois.map((e) => e.category).toSet().toList(); //map.e transforma a lista de monumentos numa lsita de nomes das categorias
+    //.toset é para caso haja repetiçao ele escreva so 1
+    //.toList Transforma de volta em lista para o ListView poder usar.
 
     return Scaffold(
       appBar: AppBar(title: const Text("Categorias")),
@@ -16,8 +18,8 @@ class CategoriesView extends StatelessWidget {
         itemCount: categories.length,
         padding: const EdgeInsets.all(16),
         itemBuilder: (context, index) {
-          final cat = categories[index];
-          final count = allPois.where((p) => p.category == cat).length;
+          final cat = categories[index]; //vai buscar a categoria atual
+          final count = allPois.where((p) => p.category == cat).length; //procura qts elementos pertencem a esta categoria
 
           return Card(
             margin: const EdgeInsets.only(bottom: 16),
