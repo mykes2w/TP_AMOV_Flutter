@@ -12,12 +12,12 @@ class FavoritesView extends StatefulWidget {
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
-  List<String> favoriteIds = [];
+  List<String> favoriteIds = []; //lista temporario para guardar os ids lidos do ficheiro
 
   @override
   void initState() {
     super.initState();
-    _loadFavorites();
+    _loadFavorites(); //inicia os favoritos
   }
 
   Future<void> _loadFavorites() async {
@@ -29,7 +29,7 @@ class _FavoritesViewState extends State<FavoritesView> {
 
   @override
   Widget build(BuildContext context) {
-    final myFavorites = widget.allPois.where((p) => favoriteIds.contains(p.id.toString())).toList();
+    final myFavorites = widget.allPois.where((p) => favoriteIds.contains(p.id.toString())).toList(); //criamos uma lsita que contem os favoritos
 
     return Scaffold(
       appBar: AppBar(title: const Text("Meus Favoritos")),
@@ -44,7 +44,7 @@ class _FavoritesViewState extends State<FavoritesView> {
             title: Text(poi.name),
             subtitle: Text(poi.shortDescription),
             trailing: const Icon(Icons.favorite, color: Colors.red),
-            onTap: () {
+            onTap: () { //quando voltamos da pagina dos detalhes para dar favorito ele faz o then() para dar laod e atualizar
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => DetailPage(poi: poi)),
               ).then((_) => _loadFavorites());
